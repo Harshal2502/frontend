@@ -128,12 +128,13 @@ function PageViewer() {
       });
   };
   const onClickSaveFile = () => {
-    console.log("editorValue: " + editorValue);
+    const htmlValue = document.getElementsByClassName('ProseMirror')[0].innerText;
+    console.log("htmlValue: " + htmlValue);
 
     const postEditedTextURL =
       process.env.REACT_APP_SERVER_URL + `/h/b/update/${parsed.b}/p/1/`;
     axios
-      .put(postEditedTextURL, { text: editorValue })
+      .put(postEditedTextURL, { text: htmlValue })
       .then(response => {
         // alert(response.data.message);
         response.data.status == "success" ? notifySuccess(response.data.message) : notifyError(response.data.message);
