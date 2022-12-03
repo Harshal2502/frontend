@@ -140,7 +140,7 @@ function PageViewer() {
         response.data.status == "success" ? notifySuccess(response.data.message) : notifyError(response.data.message);
       })
       .catch(error => {
-        console.log("That didn't work :( " + error);
+        console.log(error);
       });
   };
 
