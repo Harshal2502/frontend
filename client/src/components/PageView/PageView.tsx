@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import ImageView from "./ImageView";
 import { useAppReducer } from "../../reducerContext";
 import { Link } from "react-router-dom";
-import queryString from "query-string";
+import queryString, { parse } from "query-string";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { loadImageUtil } from "../../utils";
 import { ToastContainer, toast } from 'react-toastify';
@@ -131,7 +131,7 @@ function PageViewer() {
     console.log("editorValue: " + editorValue);
 
     const postEditedTextURL =
-      process.env.REACT_APP_SERVER_URL + "/h/b/update/ijij/p/1/";
+      process.env.REACT_APP_SERVER_URL + `/h/b/update/${parsed.b}/p/1/`;
     axios
       .put(postEditedTextURL, { text: editorValue })
       .then(response => {
@@ -139,7 +139,7 @@ function PageViewer() {
         response.data.status == "success" ? notifySuccess(response.data.message) : notifyError(response.data.message);
       })
       .catch(error => {
-        console.log(error);
+        console.log("That didn't work :( " + error);
       });
   };
 
